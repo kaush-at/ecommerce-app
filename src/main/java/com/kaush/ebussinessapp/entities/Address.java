@@ -3,6 +3,7 @@ package com.kaush.ebussinessapp.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -36,7 +37,8 @@ public class Address {
 	
 	@NonNull
 	@OneToOne
-	private User userId;
+	@JoinColumn(name="userId")
+	private User user;
 	
 	
 }

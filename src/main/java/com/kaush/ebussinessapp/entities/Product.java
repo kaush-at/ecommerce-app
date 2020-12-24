@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NonNull;
@@ -30,6 +31,9 @@ public class Product {
 	
 	@NonNull
 	private Integer quantity;
+	
+//	@ManyToOne
+//	private Order order;
 	
 	@Lob
     @Basic(fetch = FetchType.LAZY)
