@@ -1,6 +1,5 @@
 package com.kaush.ebussinessapp.entities;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,39 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.NonNull;
 
 @Entity
-@Data	
-public class Cart {
+@Data
+public class Role {
 
 	@Id
 	@GeneratedValue
-	private Integer cartId;
+	private Integer roleId;
 	
 	@NonNull
-	private Date addedDate;
-	
-	@NonNull
-	private String email;
-	
-	@NonNull
-	private Double price;
-	
-	@NonNull
-	private Integer quantity;
+	private String roleName;;
 	
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-	@JoinTable(name="product_cart", joinColumns = @JoinColumn(name="cart_id"), inverseJoinColumns = @JoinColumn(name="product_id"))
-	private List<Product> products;
-	
-	@OneToOne
-	@JoinColumn(name="user_id")
-	private User user;
-	
-	
+	@JoinTable(name="user_roles", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
+	private List<User> users;
+
 	
 }

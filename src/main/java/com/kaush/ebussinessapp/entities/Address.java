@@ -21,6 +21,7 @@ public class Address {
 	private String streetAddress;
 	
 	private String suit;
+	
 	private String floor;
 	
 	@NonNull
@@ -37,7 +38,7 @@ public class Address {
 	
 	@NonNull
 	@OneToOne
-	@JoinColumn(name="userId")
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	

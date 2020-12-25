@@ -3,9 +3,14 @@ package com.kaush.ebussinessapp.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
@@ -24,6 +29,7 @@ public class User {
 	private Integer userId;
 	
 	@NonNull
+	@NotBlank(message = "User's name is mandatory")
 	private String name;
 	
 	@NonNull
@@ -44,15 +50,16 @@ public class User {
 	@Size(min = 2, max = 50, message="User name should be valid") 
 	private String username;
 	
-	@OneToMany(mappedBy = "user")
-	private List<UserRole> roles;
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+	@JoinTable(name="user_roles", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
+	private List<Role> roles;   
 	
 	@NonNull
-	@OneToOne
+	@OneToOne(mappedBy = "user")
 	private Address address;
 	
 	@NonNull
-	@OneToOne
+	@OneToOne(mappedBy = "user")
 	private Cart shoppingCart;
 	
 	@OneToMany(mappedBy = "user")
