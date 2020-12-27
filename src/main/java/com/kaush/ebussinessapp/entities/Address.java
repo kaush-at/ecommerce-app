@@ -1,22 +1,30 @@
 package com.kaush.ebussinessapp.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data	
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Address {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer addresId;
 	
 	@NonNull
 	private String streetAddress;
@@ -37,9 +45,9 @@ public class Address {
 	@NonNull
 	private String country;
 	
-	@OneToOne
-	@JoinColumn(name="user_id")
-	private User user;
+//	@NonNull
+//	@OneToOne(mappedBy = "address")
+//	private User user;
 	
 	
 }

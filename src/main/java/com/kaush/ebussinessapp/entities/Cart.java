@@ -15,14 +15,18 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data	
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Cart {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer cartId;
 	
 	@NonNull

@@ -17,15 +17,19 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Ordertbl {
 
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderId;
 	
 	@NonNull
@@ -34,10 +38,8 @@ public class Ordertbl {
 	@NonNull
 	private Date orderDate;
 	
-	@NonNull
 	private String orderStatus;
 	
-	@NonNull
 	private Double totalPrice;
 	
 	@ManyToOne
