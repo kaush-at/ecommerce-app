@@ -6,4 +6,5 @@ import com.kaush.ebussinessapp.entities.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
+	Role findByRoleName(String roleName);
 }
