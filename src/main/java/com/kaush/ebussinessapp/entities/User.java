@@ -72,10 +72,10 @@ public class User implements Serializable{
 	@JoinColumn(name="address_id")
 	private Address address;
 	
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", cascade =CascadeType.ALL)
 	private Cart shoppingCart;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade =CascadeType.ALL)
 	private List<Ordertbl> orders;
 	
 	

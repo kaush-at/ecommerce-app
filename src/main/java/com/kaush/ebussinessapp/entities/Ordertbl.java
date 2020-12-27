@@ -42,12 +42,9 @@ public class Ordertbl {
 	
 	private Double totalPrice;
 	
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private User user;
-	
-
-	
 	
 	
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)

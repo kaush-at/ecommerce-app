@@ -14,6 +14,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 //	select * role_id from user_roles where user_id = id;
 	public UserRolesDTO findUserRolesByUserId(Integer id);
+
+	public User findUserByEmail(String email);
 	
 	
 }
