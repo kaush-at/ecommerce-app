@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Home page</title>
+</head>
+
+<body>
+    <!-- Navigation bar code -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">E-Kart</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active"  href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Promotions</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Navigation bar end -->
+
+
+    <div class="container ">
+
+        <div class="row">
+            <div class="col-md-1 "></div>
+            <div class="col-md-10" style="width: 100%; height: 200px;">
+                <br>
+                <br>
+                <div class="row">
+                 <!--   <div class="col-md-4">
+                        <img class="img-fluid" src="./img/goShopping.svg" alt="1st-image" style="width: 100%; height: 290px;">
+                    </div>
+                    <div class="col-md-4">
+                        <img class="img-fluid" src="./img/banner.svg" alt="2nd-image" style="width: 100%; height: 290px;">
+                    </div> -->
+                    <div class="col-md-12">
+                        <img class="img-fluid" src="./img/web_shopping.svg" alt="3rd-image" style="width: 100%; height: 20%;">
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <div class="row "><br>
+
+            <div class="col-md-6 ">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title"> Register</h2>
+                        <form class="row g-3">
+                        
+                             <div class="col-md-12">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Please Enter your name">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="username" class="form-label">User Name</label>
+                                <input type="text" class="form-control" id="username" placeholder="Please Enter a user name">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Please Enter your email">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Please Enter your password">
+                            </div>
+                            <!--  <h5>Address Details</h5>
+                            <hr>
+                            <div class="col-8">
+                                <label for="stAddress" class="form-label">Street Address</label>
+                                <input type="text" class="form-control" id="stAddress" placeholder="1234 Main St">
+                            </div>
+                            <div class="col-4">
+                                <label for="suit" class="form-label">Suit</label>
+                                <input type="text" class="form-control" id="suit"
+                                    placeholder="suit">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputCity" class="form-label">City</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label">State</label>
+                                <select id="inputState" class="form-select">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="inputZip" class="form-label">Zip</label>
+                                <input type="text" class="form-control" id="inputZip">
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label class="form-check-label" for="gridCheck">
+                                        Check me out
+                                    </label>
+                                </div>
+                            </div> -->
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Sign in</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 ">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title"> Login</h2>
+                        <form class="row g-3">
+                            <div class="col-md-12">
+                                <label for="inputEmail4" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="Please Enter your email">
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="inputPassword4" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="inputPassword4" placeholder="Please Enter your password">
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Sign in</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
