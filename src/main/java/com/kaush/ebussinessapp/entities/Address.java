@@ -1,15 +1,12 @@
 package com.kaush.ebussinessapp.entities;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,9 +42,10 @@ public class Address {
 	@NonNull
 	private String country;
 	
-//	@NonNull
-//	@OneToOne(mappedBy = "address")
-//	private User user;
+	@NonNull
+	@JsonIgnore
+	@OneToOne(mappedBy = "address")
+	private User user;
 	
 	
 }
