@@ -26,10 +26,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User addUser(User user) throws UserNotFoundException, RoleNotFoundException {
 		
-		// if role name is empty role name set to default role as customer
-		if(user.getRole().getRoleName() == null) {
-			user.getRole().setRoleName("Customer");
+		// set default role as Customer
+		Role role = new Role();
+		role.setRoleName("Customer");
+		user.setRole(role);
+		
+		if(roleRepo.findByRoleName("Customer") == null) {
+			roleRepo.save(role);
 		}
+		
 		
 		// prevent add duplicate user roles to the role table
 		Role existingRole = roleRepo.findByRoleName(user.getRole().getRoleName());
@@ -80,7 +85,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findUserByLoginDetails(LoginDataDTO loginDto) throws UserNotFoundException {
 		User foundUser = userRepo.findByusername(loginDto.getUsername());
-		System.out.println("USerfound..foundUser...foundUser..foundUser...foundUser..."+foundUser);
 		if(foundUser != null && loginDto.getPassword().equals(foundUser.getPassword())) {
 			return foundUser;
 		}
