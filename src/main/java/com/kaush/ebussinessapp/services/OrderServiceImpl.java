@@ -38,19 +38,34 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Ordertbl createOrder(Ordertbl ordertbl) throws OrderException {
-		Integer userId = ordertbl.getUser().getUserId();
-		User userRecieved = userRepo.findById(userId).orElse(null);
-		if(userRecieved != null) {
-			if(!userRecieved.getRole().getRoleName().equals("Admin")) {
-				return orderRepo.save(ordertbl);
+		/*
+		 *	when place the order we can get the user id and send that user id with the order create request
+		 *  but by mistake UI developer forget to bind User Id this will handle it.
+		 */
+		if(ordertbl.getUser() == null) {
+			throw new OrderException("Please Bind the user before create order");
+		}
+		
+		if(ordertbl.getUser().getUserId() != null) {
+			Integer userId = ordertbl.getUser().getUserId();
+			User userRecieved = userRepo.findById(userId).orElse(null);
+			
+			if(userRecieved != null) {
+				if(!(userRecieved.getRole().getRoleName().equals("Admin"))) {
+					return orderRepo.save(ordertbl);
+				}else {
+					throw new OrderException("As Admin you cannot place the order");
+				}
 			}else {
-				throw new OrderException("As Admin you cannot place the order");
+				throw new OrderException("Your account not found. Please register to place orders");
 			}
 		}else {
-			throw new OrderException("Your account not found. Please register to place orders");
+			throw new OrderException("User Id cannot be null");
 		}
+		
 	}
 
+	
 	@Override
 	public List<Ordertbl> getAllOrders() {
 		return orderRepo.findAll();
