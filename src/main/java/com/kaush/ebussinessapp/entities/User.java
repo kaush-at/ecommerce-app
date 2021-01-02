@@ -56,11 +56,7 @@ public class User implements Serializable{
 	
 	@NonNull
 	@Size(min = 2, max = 50, message="User name should be valid") 
-	private String username;
-	
-//	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-//	@JoinTable(name="user_roles", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
-//	private List<Role> roles;   
+	private String username;  
 	
 	@NonNull
 	@OneToOne(cascade =CascadeType.MERGE)
