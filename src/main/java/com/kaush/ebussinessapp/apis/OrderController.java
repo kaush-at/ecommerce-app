@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kaush.ebussinessapp.entities.Address;
 import com.kaush.ebussinessapp.entities.Ordertbl;
 import com.kaush.ebussinessapp.exceptions.OrderException;
+import com.kaush.ebussinessapp.services.AddressService;
 import com.kaush.ebussinessapp.services.OrderService;
 
 @RestController
@@ -20,6 +22,9 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
+	
+	@Autowired
+	AddressService addressService;
 	
 	@PostMapping("/save")
 	public Ordertbl createOrder(@RequestBody Ordertbl ordertbl) throws OrderException {
@@ -42,6 +47,11 @@ public class OrderController {
 	@GetMapping("/getAllOrders/{userId}")
 	public List<Ordertbl> getAllOrders(@PathVariable Integer userId){
 		return  orderService.findAllOrdersByUserId(userId);
+	}
+	
+	@PostMapping("/createAddress")
+	public Address saveAddress(@RequestBody Address adderss) {
+		return adderss;
 	}
 	
 }
