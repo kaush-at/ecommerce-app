@@ -23,8 +23,6 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 	
-	@Autowired
-	AddressService addressService;
 	
 	@PostMapping("/save")
 	public Ordertbl createOrder(@RequestBody Ordertbl ordertbl) throws OrderException {
@@ -49,9 +47,5 @@ public class OrderController {
 		return  orderService.findAllOrdersByUserId(userId);
 	}
 	
-	@PostMapping("/createAddress")
-	public Address saveAddress(@RequestBody Address adderss) {
-		return adderss;
-	}
-	
+
 }

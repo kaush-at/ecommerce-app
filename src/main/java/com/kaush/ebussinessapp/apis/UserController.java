@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kaush.ebussinessapp.dtos.LoginDataDTO;
+import com.kaush.ebussinessapp.entities.Address;
 import com.kaush.ebussinessapp.entities.Cart;
 import com.kaush.ebussinessapp.entities.Product;
 import com.kaush.ebussinessapp.entities.Role;
 import com.kaush.ebussinessapp.entities.User;
 import com.kaush.ebussinessapp.exceptions.UserNotFoundException;
 import com.kaush.ebussinessapp.exceptions.UserRoleException;
+import com.kaush.ebussinessapp.services.AddressService;
 import com.kaush.ebussinessapp.services.CartService;
 import com.kaush.ebussinessapp.services.RoleService;
 import com.kaush.ebussinessapp.services.UserService;
@@ -38,6 +40,9 @@ public class UserController {
 	
 	@Autowired
 	CartService cartService;
+	
+	@Autowired
+	AddressService addressService;
 	
 	@PostMapping("/save")
 	public User addUser(@Valid @RequestBody User user) throws UserNotFoundException, RoleNotFoundException {
@@ -69,6 +74,12 @@ public class UserController {
 		return cartService.deleteProductFromCart(Productid, cart );
 		
 	}
+	
+	@PostMapping("/createAddress")
+	public Address saveAddress(@RequestBody Address address) {
+		return addressService.save(address);
+	}
+	
 
 
 }
