@@ -21,6 +21,7 @@ import com.kaush.ebussinessapp.entities.Cart;
 import com.kaush.ebussinessapp.entities.Product;
 import com.kaush.ebussinessapp.entities.Role;
 import com.kaush.ebussinessapp.entities.User;
+import com.kaush.ebussinessapp.exceptions.AddresException;
 import com.kaush.ebussinessapp.exceptions.UserNotFoundException;
 import com.kaush.ebussinessapp.exceptions.UserRoleException;
 import com.kaush.ebussinessapp.services.AddressService;
@@ -76,7 +77,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/createAddress")
-	public Address saveAddress(@RequestBody Address address) {
+	public Address saveAddress(@RequestBody Address address) throws AddresException {
 		return addressService.save(address);
 	}
 	
