@@ -32,6 +32,16 @@ public class HomeController {
 		return "login";
 	}
 	
+	@RequestMapping("/loginUser")
+	public String userLogin(Model model, LoginDataDTO loginDTO, Errors errors) throws UserNotFoundException {
+		if(errors.hasErrors()) {
+			return "/login";
+		}
+		userService.findUserByLoginDetails(loginDTO);
+		return "showProducts";
+	}
+
+	
 	@RequestMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("formData",new User());
