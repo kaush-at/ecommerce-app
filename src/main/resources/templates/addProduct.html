@@ -42,7 +42,8 @@
 
 
     <div class="container ">
-
+	<br>
+	<br>
         <div class="row">
             <br>
             <br>
@@ -50,27 +51,28 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title"> Add Product</h2>
-                        <form class="row g-3">
+                        <form class="row g-3" th:action="@{saveProduct}" method="post" th:object="${product}">
                         
                              <div class="col-md-12">
                                 <label for="productName" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="productName" placeholder="Please Enter your name">
+                                <input type="text" class="form-control" id="productName" th:field="${product.productName}" placeholder="Enter the product name">
                             </div>
                             <div class="col-md-12">
                                 <label for="description" class="form-label">Product Description</label>
-                                <input type="text" class="form-control" id="description" placeholder="Please Enter a user name">
+                                <input type="text" class="form-control" id="description" th:field="${product.description}" placeholder="Product description">
                             </div>
                             <div class="col-md-12">
                                 <label for="price" class="form-label">Price</label>
-                                <input type="text" class="form-control" id="price" placeholder="Please Enter the product price">
+                                <input type="text" class="form-control" id="price" th:field="${product.price}" placeholder="Price of the product">
                             </div>
                             <div class="col-md-12">
                                 <label for="quantity" class="form-label">Quantity</label>
-                                <input type="text" class="form-control" id="quantity" placeholder="Please Enter quantity">
+                                <input type="text" class="form-control" id="quantity" th:field="${product.quantity}" placeholder="Product quantity">
                             </div>
 
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Add Product</button>
+                                <button type="submit" class="btn btn-primary">Show Products</button>
+                                <a th:href="@{register}" class="btn btn-primary">Register</a>
                             </div>
                         </form>
                     </div>
