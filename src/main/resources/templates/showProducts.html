@@ -1,156 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Product page</title>
-</head>
+<head th:replace="layout :: header"></head>
 
+
+<!-- <body th:with="test=${#httpServletRequest.getAttribute('test')}"> -->
 <body>
-    <!-- Navigation bar code -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">E-Kart</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" th:href="@{addProduct}">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Promotions</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-    <!-- Navigation bar end -->
+
+<nav th:replace="layout :: navbar"></nav>
+
     <br>
     <br>
-    <div class="row">
+    <div class="row" >
 	<!-- products have all the products -->
+	
+	
         <div class="col-md-1"></div>
-        <div class="col-md-2">
-            <div class="card-deck">
+        <div class="col-md-2"   th:each="aProduct : ${productList}">
+            <div class="card-deck" >
                 <div class="card">
                     <img class="card-img-top" src="./img/banner-image2.jpg" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
+                        <h5 class="card-title" th:text="${aProduct.productName}"></h5>
+                        <p class="card-text" th:text="${aProduct.description}"></p>
                         <div class="row">
                             <div class="col-md-1"></div>
                             <div class="col-md-5">
                                 <a href="register.html" class="btn btn-primary">View Product</a>
                             </div>
                             <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="./img/banner1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">View Product</a>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="./img/banner2.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">View Product</a>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="./img/banner-image2.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">View Product</a>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="./img/banner1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">View Product</a>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
+	                            <form class="d-flex" th:action="@{addToCart}" method="post" th:object="${cart}">
+		                            <input type="hidden"  class="form-control" id="cartId" name="cartId" th:field="${cart.cartId}"/>
+		                            <input type="hidden"  class="form-control" id="email" name="email" th:field="${cart.email}"/>
+		                            <input type="hidden"  class="form-control" id="user" name="user" th:field="${cart.user}"/>
+		                            <!--  <input type="hidden"  class="form-control" id="productId" name="ProductId" th:field="${product.productId"/>-->
+		                            <button class="btn btn-primary" type="submit">Add To Cart</button>
+	                            </form>
                             </div>
                             <div class="col-md-1"></div>
                         </div>
@@ -164,126 +49,6 @@
     </div>
 
 
-    <div class="row">
-
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="./img/banner-image2.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">View Product</a>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="./img/banner1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">View Product</a>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="./img/banner2.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">View Product</a>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="./img/banner-image2.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">View Product</a>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="./img/banner1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Click Here To Register</h5>
-                        <p class="card-text">If you are new user please register by clicking register button
-                            below</p>
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">View Product</a>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="register.html" class="btn btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-1"></div>
-    </div>
 
 </body>
 
