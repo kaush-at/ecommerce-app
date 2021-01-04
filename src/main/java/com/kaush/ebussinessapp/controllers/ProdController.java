@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kaush.ebussinessapp.entities.Cart;
 import com.kaush.ebussinessapp.entities.Product;
+import com.kaush.ebussinessapp.services.CartService;
 import com.kaush.ebussinessapp.services.ProductService;
 
 @Controller
@@ -17,6 +19,10 @@ public class ProdController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	CartService cartService;
+	
 	
 	@RequestMapping("/addProduct")
 	public String addProductPage(Model model) {
@@ -35,7 +41,20 @@ public class ProdController {
 	
 	@RequestMapping("/showAllProducts")
 	public String showAllProducts(Model model) {
-		model.addAttribute("products", productService.findAllProducts());
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+productService.findAllProducts());
+		model.addAttribute("productList", productService.findAllProducts());
+		model.addAttribute("cart", new Cart());
 		return "showProducts";
 	}
+	
+	@RequestMapping("/addToCart")
+	public String addProductToCart(Model model, @Valid Cart cart, @Valid Product product,Errors errors) {
+		if(errors.hasErrors()) {
+			return "redirect:/showProducts";
+		}
+		
+		cartService.addToCart(cart, product);
+		return "showProducts";
+	}
+	
 }

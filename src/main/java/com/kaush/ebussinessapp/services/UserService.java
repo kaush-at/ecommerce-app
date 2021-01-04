@@ -23,6 +23,6 @@ public interface UserService {
 	
 	public void deleteAllUsers();
 	
-	public User findUserByLoginDetails(LoginDataDTO loginDto) throws UserNotFoundException;
+	public User findUserByLoginDetails(LoginDataDTO loginDto) throws UserNotFoundException; 
 	
 }
