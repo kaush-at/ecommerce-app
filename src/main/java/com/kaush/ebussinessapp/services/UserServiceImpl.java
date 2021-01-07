@@ -84,11 +84,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findUserByLoginDetails(LoginDataDTO loginDto) throws UserNotFoundException {
-		User foundUser = userRepo.findByusername(loginDto.getUsername());
+		User foundUser = userRepo.findUserByEmail(loginDto.getEmail());
 		if(foundUser != null && loginDto.getPassword().equals(foundUser.getPassword())) {
 			return foundUser;
 		}
-		 throw new UserNotFoundException("Please check your username and password");  // throw new UserNotFpounException("User credentials not valid");
+		 throw new UserNotFoundException("Please check your username and password");  
 	}
 
 }

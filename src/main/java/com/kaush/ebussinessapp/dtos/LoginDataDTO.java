@@ -13,4 +13,5 @@ public class LoginDataDTO {
 	private String username;
 	private String password;
 	private String userRole;
+	private String email;
 }

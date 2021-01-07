@@ -27,8 +27,9 @@ public class HomeController {
 	ProductService productService;
 	
 	@RequestMapping("/")
-	public String home() {
-		return "index";
+	public String home(Model model) {
+		model.addAttribute("loginData",new LoginDataDTO());
+		return "login";
 	}
 	
 	@RequestMapping("/login")
@@ -38,14 +39,21 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/loginUser")
-	public String userLogin(Model model, LoginDataDTO loginDTO, Errors errors) throws UserNotFoundException {
-		if(errors.hasErrors()) {
-			return "/login";
+	public String userLogin(Model model, LoginDataDTO loginDTO) {
+
+		try {
+			User foundUser = userService.findUserByLoginDetails(loginDTO);
+			if(foundUser!=null) {
+				model.addAttribute("cart", new Cart());
+				model.addAttribute("productList", productService.findAllProducts());
+			}
+			return "showProducts";
+		}catch(UserNotFoundException ex) {
+			model.addAttribute("message", "Invalid Credentials please check your user name and password");
+			model.addAttribute("loginData",new LoginDataDTO());
+			return "login";
 		}
-		userService.findUserByLoginDetails(loginDTO);
-		model.addAttribute("productList", productService.findAllProducts());
-		model.addAttribute("cart", new Cart());
-		return "showProducts";
+	
 	}
 
 	
@@ -56,14 +64,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/saveUser")
-	public String registerUser(Model model, @Valid User user, Errors errors) throws RoleNotFoundException, UserNotFoundException {
-		if(errors.hasErrors()) {
-			return "/register";
+	public String registerUser(Model model, @Valid User user) {
+
+		try {
+			userService.addUser(user);
+			model.addAttribute("productList", productService.findAllProducts());
+			model.addAttribute("cart", new Cart());
+			return "showProducts";
+		}catch(Exception ex){
+			model.addAttribute("message", ex.getMessage());
+			model.addAttribute("formData",new User());
+			return "register";
 		}
-		userService.addUser(user);
-		model.addAttribute("productList", productService.findAllProducts());
-		model.addAttribute("cart", new Cart());
-		return "showProducts";
+
 	}
 	
 	
