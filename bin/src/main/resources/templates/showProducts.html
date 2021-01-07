@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: header"></head>
+
+
+<!-- <body th:with="test=${#httpServletRequest.getAttribute('test')}"> -->
+<body>
+
+<nav th:replace="layout :: navbar"></nav>
+
+    <br>
+    <br>
+    <div class="row" >
+	<!-- products have all the products -->
+	
+	
+        <div class="col-md-1"></div>
+        <div class="col-md-2"   th:each="aProduct : ${productList}">
+            <div class="card-deck" >
+                <div class="card">
+                    <img class="card-img-top" src="./img/banner-image2.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${aProduct.productName}"></h5>
+                        <p class="card-text" th:text="${aProduct.description}"></p>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" th:attrappend="data-target=${aProduct.id}">View Product</button>
+
+                            </div>
+                            <div class="col-md-5">
+	                            <form class="d-flex" th:action="@{addToCart}" method="post" th:object="${cart}">
+		                            <input type="hidden"  class="form-control" id="cartId" name="cartId" th:field="${cart.cartId}"/>
+		                            <input type="hidden"  class="form-control" id="email" name="email" th:field="${cart.email}"/>
+		                            <input type="hidden"  class="form-control" id="user" name="user" th:field="${cart.user}"/>
+		                            <!--  <input type="hidden"  class="form-control" id="productId" name="ProductId" th:field="${product.productId"/>-->
+		                            <button class="btn btn-primary" type="submit">Add To Cart</button>
+	                            </form>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-1"></div>
+
+    </div>
+    
+    <!-- Button trigger modal
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:attrappend="id=${aProduct.productId}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+$(function () {
+    $('#exampleModal').modal('show');
+});
+</script>
+
+</body>
+
+</html>

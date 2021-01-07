@@ -17,6 +17,7 @@
 	
         <div class="col-md-1"></div>
         <div class="col-md-2"   th:each="aProduct : ${productList}">
+        <!--<input type="hidden" id="login" th:object="${loginData}"> -->
             <div class="card-deck" >
                 <div class="card">
                     <img class="card-img-top" src="./img/banner-image2.jpg" alt="Card image cap">
@@ -26,7 +27,7 @@
                         <div class="row">
                             <div class="col-md-1"></div>
                             <div class="col-md-5">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" th:attrappend="data-target=${aProduct.id}">View Product</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" th:attrappend="data-target=${aProduct.productId}">View Product</button>
 
                             </div>
                             <div class="col-md-5">
@@ -55,7 +56,7 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:attrappend="id=${aProduct.productId}">
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:attrappend="id=${aProduct.productId}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -73,7 +74,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 
 <script>

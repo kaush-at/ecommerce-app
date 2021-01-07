@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: header">
+</head>
+
+<body>
+
+
+<nav th:replace="layout :: navbar"></nav>
+
+
+    <div class="container ">
+	<br>
+	<br>
+        <div class="row">
+            <br>
+            <br>
+            <div class="col-md-7 ">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title"> Add Product</h2>
+                        <form class="row g-3" th:action="@{saveProduct}" method="post" th:object="${product}">
+                        
+                             <div class="col-md-12">
+                                <label for="productName" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="productName" th:field="${product.productName}" placeholder="Enter the product name">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="description" class="form-label">Product Description</label>
+                                <input type="text" class="form-control" id="description" th:field="${product.description}" placeholder="Product description">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="price" th:field="${product.price}" placeholder="Price of the product">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="text" class="form-control" id="quantity" th:field="${product.quantity}" placeholder="Product quantity">
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Add Products</button>
+                                <a th:href="@{showAllProducts}" class="btn btn-primary">Show Products</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="col-md-5">
+            
+            
+            </div>
+        </div>
+        
+    </div>    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
