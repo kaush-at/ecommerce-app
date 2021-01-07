@@ -44,10 +44,19 @@ public class HomeController {
 		try {
 			User foundUser = userService.findUserByLoginDetails(loginDTO);
 			if(foundUser!=null) {
-				model.addAttribute("cart", new Cart());
-				model.addAttribute("productList", productService.findAllProducts());
+				if(foundUser.getRoles().contains("Customer")) {
+					model.addAttribute("cart", new Cart());
+					model.addAttribute("productList", productService.findAllProducts());
+					model.addAttribute("user", foundUser);
+					return "showProducts";
+				}
+				if(foundUser.getRoles().contains("Admin")) {
+					model.addAttribute("productList", productService.findAllProducts());
+					model.addAttribute("user", foundUser);
+					return "addProduct";
+				}
 			}
-			return "showProducts";
+			return "login";
 		}catch(UserNotFoundException ex) {
 			model.addAttribute("message", "Invalid Credentials please check your user name and password");
 			model.addAttribute("loginData",new LoginDataDTO());
