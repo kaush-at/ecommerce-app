@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: header"></head>
+
+
+<!-- <body th:with="test=${#httpServletRequest.getAttribute('test')}"> -->
+
+<body>
+    <nav th:replace="layout :: navbar"></nav>
+	    <div class="container">
+	
+	        <div class="row">
+	            <div class="col-md-3">
+	            </div>
+	            <div class="col-md-6">
+	            <!--  <form class="d-flex" th:action="@{/editProduct/}+${product.productId}" th:method="PUT" th:object="${product}" >-->
+	            <form class="d-flex" th:action="@{/editProduct}" th:method="post" th:object="${product}" >
+	                <div class="card" style="width: 18rem;">
+	                    <img src="./img/banner-image2.jpg" class="card-img-top" alt="product image">
+	                    <div class="card-body">
+	                    <input class="form-control" th:value="${product.productId}" id="productId"
+	                            name="productId" type="hidden">
+	                        <label for="productName">Product Name</label><br>
+	                        <input class="form-control" th:value="${product.productName}" id="productName"
+	                            name="productName">
+	                        <label for="prodDescription">Product Description</label><br>
+	                        <textarea class="card-text" th:text="${product.description}" id="prodDescription"
+	                            name="description"></textarea>
+	                        <label for="prodPrice">Product Price</label><br>
+	                        <input class="form-control" th:value="${product.price}" id="prodPrice" name="price">
+	                        <!--<input for product image> -->
+	                    </div>
+	                    <div class="card-body">
+	                         <button class="btn btn-primary" type="submit">Update Product</button>
+	                   
+	                        <a href="#" class="btn btn-primary">close</a>
+	                    </div>
+	                    
+	                </div>
+	                 </form>
+	            </div>
+	            <div class="col-md-3">
+	            </div>
+	        </div>
+	
+	    </div>
+
+
+</body>
+
+</html>
