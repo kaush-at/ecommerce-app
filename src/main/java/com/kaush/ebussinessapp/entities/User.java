@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
@@ -34,13 +35,13 @@ public class User implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="user_id")
 	private Integer userId;
 	
 	@NonNull
 	@NotBlank(message = "User's name is mandatory")
 	private String name;
 	
-	@NonNull
 	private Date dob;
 	
 	private Boolean isEnabled;
@@ -58,8 +59,18 @@ public class User implements Serializable{
 	@Size(min = 2, max = 50, message="User name should be valid") 
 	private String username;  
 	
+//	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+//	@JoinTable(name="user_roles", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
+//	private Set<Role> roles;
+	
+//	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+//	@JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {
+//    @JoinColumn(name = "role_id", referencedColumnName = "role_id")}, uniqueConstraints = @UniqueConstraint(columnNames = {
+//                        "user_id", "role_id" }))
+//	private Set<Role> roles;
+	
 	@NonNull
-	@OneToOne(cascade =CascadeType.MERGE)
+	@ManyToOne(cascade =CascadeType.ALL)
 	@JoinColumn(name="role_id")
 	private Role role;
 	
@@ -75,7 +86,7 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "user", cascade =CascadeType.MERGE)
 	private List<Ordertbl> orders;
 	
-	
+
 	
 	
 
