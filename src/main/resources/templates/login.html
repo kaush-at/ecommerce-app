@@ -10,7 +10,7 @@
 
 
 
-    <div class="container ">
+       <div class="container ">
         <br>
         <!--image data-->
         <div class="row">
@@ -24,44 +24,69 @@
         <!--form data-->
         <br>
         <div class="row">
-            <div class="col-md-3"></div>
+            <div class="col-md-2"></div>
 
-            <div class="col-md-6 ">
+            <div class="col-md-8 ">
                 <div class="card">
 
                     <div class="card-body">
-                        <h2 class="card-title"> Sign-In </h2>
+                        <h2 class="card-title "> Sign-In </h2>
+                        <hr>
+                        <br><br>
+                        
                         <form class="row g-3" th:action="@{/loginUser}" method="post" th:object="${loginData}">
-						
 
-                            <div class="col-md-10">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                    th:field="${loginData.email}" placeholder="Email here">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label for="email" class="form-label">Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        th:field="${loginData.email}" placeholder="Email here">
+                                </div>
+                                <div class="col-md-4">
+                                    <span id="emailError"></span>
+                                </div>
+                            </div>
+                            
+                            <!-- to get space between input field -->
+							<div>
+								<br>
+							</div>
+							
+                            <div class="row">
+                            
+                                <div class="col-md-2">
+                                    <label for="password" class="form-label">Password</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        th:field="${loginData.password}" placeholder="Password here">
+                                </div>
+                                <div class="col-md-4">
+                                    <span id="passwordError"></span>
+                                </div>
                             </div>
 
-                            <div class="col-md-10">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password"
-                                    th:field="${loginData.password}" placeholder="Password here">
-                            </div>
 
 
 
                             <div class="col-10">
+                            <br>
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
-							<div class="row">
-							    <div class="col-4">
-                                   <br> 
+                            <div class="row">
+                                <div class="col-4">
+                                    <br>
                                 </div>
-							</div>
+                            </div>
                             <div class="row">
                                 <div class="col-8">
-                                    <h6>If you don't have account, <a th:href="@{register}">Click Here</a> to Register</h6>
+                                    <h6>If you don't have account, <a th:href="@{register}">Click Here</a> to Register
+                                    </h6>
                                 </div>
                                 <div class="col-4">
-                                    
+
                                 </div>
                             </div>
 
@@ -76,7 +101,7 @@
             </div>
 
 
-            <div class="col-md-3">
+            <div class="col-md-2">
             </div>
 
         </div>
@@ -85,10 +110,63 @@
         </div>
 
     </div>
+    
+    <script type="text/javascript">
+    $(document).ready(function () {
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+            $("#emailError").hide();
+            var emailError = false;
+
+            $("#passwordError").hide();
+            var passwordError = false;
+
+
+            var password = $("#password").val();
+
+            function validate_email() {
+                var email = $("#email").val();
+                if (email == "") {
+                    $("#emailError").show();
+                    $("#emailError").html("<p>Email cannot be empty</p>");
+                    $("#emailError").css("color", "red");
+                    var emailError = true;
+                } else {
+                    $("#emailError").show();
+                    var emailError = false;
+                }
+            }
+
+
+            $("#email").keyup(function () {
+                validate_email();
+            });
+
+            // validate password
+            var password = $("#password").val();
+
+            function validate_password() {
+                var password = $("#password").val();
+                if (password == "") {
+                    $("#passwordError").show();
+                    $("#passwordError").html("<p>Password cannot be empty</p>");
+                    $("#passwordError").css("color", "red");
+                    var passwordError = true;
+                } else {
+                    $("#passwordError").show();
+                    var passwordError = false;
+                }
+            }
+
+
+            $("#password").keyup(function () {
+                validate_password();
+            });
+
+        });
+
+    </script>
+
+
 </body>
 
 </html>
