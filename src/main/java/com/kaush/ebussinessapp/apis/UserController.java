@@ -46,7 +46,7 @@ public class UserController {
 	AddressService addressService;
 	
 	@PostMapping("/save")
-	public User addUser(@Valid @RequestBody User user) throws UserNotFoundException, RoleNotFoundException {
+	public User addUser(@Valid @RequestBody User user) throws Exception {
 		return userService.addUser(user);
 	}
 	
