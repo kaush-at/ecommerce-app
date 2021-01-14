@@ -11,7 +11,7 @@ import com.kaush.ebussinessapp.exceptions.UserNotFoundException;
 
 public interface UserService {
 
-	public User addUser(User user) throws UserNotFoundException, RoleNotFoundException;
+	public User addUser(User user) throws Exception;
 	
 	public User updateUser(User user);
 	

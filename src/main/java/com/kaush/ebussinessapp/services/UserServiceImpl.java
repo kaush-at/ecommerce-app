@@ -1,6 +1,8 @@
 package com.kaush.ebussinessapp.services;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.management.relation.RoleNotFoundException;
 
@@ -11,6 +13,7 @@ import com.kaush.ebussinessapp.dtos.LoginDataDTO;
 import com.kaush.ebussinessapp.entities.Role;
 import com.kaush.ebussinessapp.entities.User;
 import com.kaush.ebussinessapp.exceptions.UserNotFoundException;
+import com.kaush.ebussinessapp.exceptions.UserRoleException;
 import com.kaush.ebussinessapp.repos.RoleRepository;
 import com.kaush.ebussinessapp.repos.UserRepository;
 
@@ -24,26 +27,20 @@ public class UserServiceImpl implements UserService {
 	RoleRepository roleRepo;
 	
 	@Override
-	public User addUser(User user) throws UserNotFoundException, RoleNotFoundException {
+	public User addUser(User user) throws Exception {
+
 		
 		// set default role as Customer
-		Role role = new Role();
-		role.setRoleName("Customer");
-		user.setRole(role);
-		
-		if(roleRepo.findByRoleName("Customer") == null) {
-			roleRepo.save(role);
+		if(user.getRole() == null ) {
+			
+			if(roleRepo.findByRoleName("Customer") == null) {
+				throw new UserRoleException("User role must be set first");
+			}else {
+				user.setRole(roleRepo.findByRoleName("Customer"));
+			}
+			
 		}
-		
-		
-		// prevent add duplicate user roles to the role table
-		Role existingRole = roleRepo.findByRoleName(user.getRole().getRoleName());
-		if(existingRole != null) {
-			user.getRole().setRoleId(existingRole.getRoleId());
-		}else{
-			throw new RoleNotFoundException("Please check the role table and add the user roles first");
-		}
-		
+	
 		// check user email already there in the system
 		User retrievedUser = userRepo.findUserByEmail(user.getEmail());
 		if(retrievedUser != null) {
