@@ -1,16 +1,15 @@
 package com.kaush.ebussinessapp.controllers;
 
-import javax.management.relation.RoleNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kaush.ebussinessapp.dtos.LoginDataDTO;
 import com.kaush.ebussinessapp.entities.Cart;
+import com.kaush.ebussinessapp.entities.Product;
 import com.kaush.ebussinessapp.entities.User;
 import com.kaush.ebussinessapp.exceptions.UserNotFoundException;
 import com.kaush.ebussinessapp.services.ProductService;
@@ -44,15 +43,16 @@ public class HomeController {
 		try {
 			User foundUser = userService.findUserByLoginDetails(loginDTO);
 			if(foundUser!=null) {
-				if(foundUser.getRoles().contains("Customer")) {
+				if(foundUser.getRole().getRoleName().equals("Customer")){
 					model.addAttribute("cart", new Cart());
 					model.addAttribute("productList", productService.findAllProducts());
 					model.addAttribute("user", foundUser);
 					return "showProducts";
 				}
-				if(foundUser.getRoles().contains("Admin")) {
-					model.addAttribute("productList", productService.findAllProducts());
+				if(foundUser.getRole().getRoleName().equals("Admin")) {
+					model.addAttribute("product", new Product());
 					model.addAttribute("user", foundUser);
+					model.addAttribute("productList", productService.findAllProducts());
 					return "addProduct";
 				}
 			}
