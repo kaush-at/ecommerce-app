@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kaush.ebussinessapp.entities.Cart;
@@ -33,7 +34,7 @@ public class ProdController {
 		return "addProduct";
 	}
 	
-	@RequestMapping("/saveProduct")
+	@RequestMapping("admin/saveProduct")
 	public String addProduct(Model model, @Valid Product product, Errors errors) {
 		if(errors.hasErrors()) {
 			return "/register";
@@ -49,7 +50,7 @@ public class ProdController {
 		return "showProducts";
 	}
 	
-	@RequestMapping("/addToCart")
+	@PostMapping("/addToCart")
 	public String addProductToCart(Model model, @Valid Cart cart, @Valid Product product,Errors errors) {
 		if(errors.hasErrors()) {
 			return "redirect:/showProducts";
@@ -63,8 +64,21 @@ public class ProdController {
 	public String viewProductById(Model model,@PathVariable Integer id) throws ProductException {
 		Product prod = productService.findProductById(id);
 		model.addAttribute("product", prod);
-		return "showProducts";
+		return "productPage";
 		
+	}
+	
+	@PostMapping("/editProduct")
+	public String updateProduct(Model model,@Valid Product product) throws ProductException {
+		Product prod = productService.findProductById(product.getProductId());
+		prod.setProductName(product.getProductName());
+		prod.setDescription(product.getDescription());
+		prod.setPrice(product.getPrice());
+		Product UpdatedProduct = productService.updateProduct(prod);
+		
+		model.addAttribute("product",UpdatedProduct);
+		model.addAttribute("message", "Product Updated..");
+		return "productPage";
 	}
 	
 }
