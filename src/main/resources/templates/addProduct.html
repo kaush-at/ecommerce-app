@@ -16,12 +16,12 @@
         <div class="row">
             <br>
             <br>
-            <div class="col-md-7 ">
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title"> Add Product</h2>
                         <form class="row g-3" th:action="@{admin/saveProduct}" method="post" th:object="${product}">
-                        
+                        	 <input type="hidden" th:object="${user}">
                              <div class="col-md-12">
                                 <label for="productName" class="form-label">Product Name</label>
                                 <input type="text" class="form-control" id="productName" th:field="${product.productName}" placeholder="Enter the product name">

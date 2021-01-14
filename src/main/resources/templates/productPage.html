@@ -8,44 +8,94 @@
 
 <body>
     <nav th:replace="layout :: navbar"></nav>
-	    <div class="container">
-	
-	        <div class="row">
-	            <div class="col-md-3">
-	            </div>
-	            <div class="col-md-6">
-	            <!--  <form class="d-flex" th:action="@{/editProduct/}+${product.productId}" th:method="PUT" th:object="${product}" >-->
-	            <form class="d-flex" th:action="@{/editProduct}" th:method="post" th:object="${product}" >
-	                <div class="card" style="width: 18rem;">
-	                    <img src="./img/banner-image2.jpg" class="card-img-top" alt="product image">
-	                    <div class="card-body">
-	                    <input class="form-control" th:value="${product.productId}" id="productId"
-	                            name="productId" type="hidden">
-	                        <label for="productName">Product Name</label><br>
-	                        <input class="form-control" th:value="${product.productName}" id="productName"
-	                            name="productName">
-	                        <label for="prodDescription">Product Description</label><br>
-	                        <textarea class="card-text" th:text="${product.description}" id="prodDescription"
-	                            name="description"></textarea>
-	                        <label for="prodPrice">Product Price</label><br>
-	                        <input class="form-control" th:value="${product.price}" id="prodPrice" name="price">
-	                        <!--<input for product image> -->
-	                    </div>
-	                    <div class="card-body">
-	                         <button class="btn btn-primary" type="submit">Update Product</button>
-	                   
-	                        <a href="#" class="btn btn-primary">close</a>
-	                    </div>
-	                    
-	                </div>
-	                 </form>
-	            </div>
-	            <div class="col-md-3">
-	            </div>
-	        </div>
-	
-	    </div>
 
+
+    <div class="container ">
+        <br>
+        <!--image data-->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                  <img src="./img/banner-image2.jpg" class="card-img-top" alt="product image">
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+        <!--form data-->
+        <br>
+        <div class="row">
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6 ">
+                <div class="card">
+
+                    <div class="card-body">
+                        <h2 class="card-title"> Edit Product </h2>
+                        <form class="row g-3" th:action="@{/editProduct}" th:method="post" th:object="${product}">
+
+                            
+                            <input class="form-control" th:value="${product.productId}" id="productId" name="productId"
+                                type="hidden">
+
+                            <div class="col-md-10">
+                                <label for="productName">Product Name</label><br>
+                                <input class="form-control" th:value="${product.productName}" id="productName"
+                                    name="productName">
+                            </div>
+
+
+                            <div class="col-md-10">
+                                <label for="prodDescription">Product Description</label><br>
+                                <textarea class="card-text" th:text="${product.description}" id="prodDescription"
+                                    name="description"></textarea>
+                            </div>
+
+                            <div class="col-md-10">
+                                <label for="prodPrice">Product Price</label><br>
+                                <input class="form-control" th:value="${product.price}" id="prodPrice" name="price">
+                            </div>
+
+
+
+                            <div class="col-10">
+                                <button class="btn btn-primary" type="submit">Update Product</button>
+
+                                <a th:href="@{showAllProducts}" class="btn btn-primary">close</a>
+                            </div>
+                            <!-- <div class="row">
+							    <div class="col-4">
+                                   <br> 
+                                </div>
+							</div>
+                          <div class="row">
+                                <div class="col-8">
+                                    <h6>If you don't have account, <a th:href="@{register}">Click Here</a> to Register</h6>
+                                </div>
+                                <div class="col-4">
+                                    
+                                </div>
+                            </div> -->
+
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <h6 class="text-red" th:text="${message}"></h6>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
 
 </body>
 
