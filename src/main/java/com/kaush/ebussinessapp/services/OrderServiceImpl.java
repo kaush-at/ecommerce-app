@@ -31,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
 		}
 	}
 
+	
 	@Override
 	public List<Ordertbl> findAllOrdersByUserId(Integer userId) {
 		return orderRepo.findByUserUserId(userId);
@@ -50,8 +51,8 @@ public class OrderServiceImpl implements OrderService {
 			Integer userId = ordertbl.getUser().getUserId();
 			User userRecieved = userRepo.findById(userId).orElse(null);
 			
-			if(userRecieved != null) {
-				if(!(userRecieved.getRole().getRoleName().equals("Admin"))) {
+			if(userRecieved != null) {	
+				if(!(userRecieved.getRole().equals("Admin"))) {
 					return orderRepo.save(ordertbl);
 				}else {
 					throw new OrderException("As Admin you cannot place the order");
